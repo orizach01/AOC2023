@@ -1,6 +1,7 @@
 from functools import reduce
 from operator import mul
 
+
 def part1(file):
     rules = {
         'red': 12,
@@ -26,14 +27,11 @@ def part1(file):
 def part2(file):
     colors = ['red', 'green', 'blue']
 
-    bad_ids = set()
-    all_ids = set()
     powers = []
     with open(file) as f:
         for line in map(str.strip, f.readlines()):
             totals = {c: [] for c in colors}
             game_id, line = line.split(":")[0].split(' ')[1], line.split(":")[1]
-            all_ids.add(int(game_id))
             for game_set in line.split(';'):
                 game_set = [tuple(_.strip().split(' ')) for _ in game_set.split(',')]
                 for balls in game_set:
