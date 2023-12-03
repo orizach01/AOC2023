@@ -16,12 +16,14 @@ def build_matrix(f):
 
 def get_num(matrix, start_pos):
     num = 0
-    for i in range(start_pos[0], len(matrix)):
-        for j in range(start_pos[1], len(matrix[i])):
-            if type(matrix[i][j]) == tuple:
-                num = num * 10 + matrix[i][j][0]
-            else:
-                return num
+    i = start_pos[0]
+    for j in range(start_pos[1], len(matrix[i])):
+        if type(matrix[i][j]) == tuple:
+            num = num * 10 + matrix[i][j][0]
+        else:
+            break
+
+    return num, start_pos
 
 
 def get_adjacent_nums(directions, matrix):
@@ -65,7 +67,7 @@ def part1(file):
 
                     nums = get_adjacent_nums(directions, matrix)
 
-                    ret += sum(nums)
+                    ret += sum([num[0] for num in nums])
 
         return ret
 
@@ -83,7 +85,7 @@ def part2(file):
                     nums = get_adjacent_nums(directions, matrix)
 
                     if len(nums) == 2:
-                        ret += nums.pop() * nums.pop()
+                        ret += nums.pop()[0] * nums.pop()[0]
 
         return ret
 
@@ -91,8 +93,8 @@ def part2(file):
 if __name__ == '__main__':
     assert 4361 == part1('example.txt')
 
-    print(part1('input.txt'))
+    print(part1('example2.txt'))
 
     assert 467835 == part2('example.txt')
 
-    print(part2('input.txt'))
+    print(part2('example2.txt'))
