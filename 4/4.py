@@ -14,7 +14,6 @@ def part1(file):
 
 
 def part2(file):
-    ret = 0
     with open(file) as f:
         cards = [None]
         for i, line in enumerate(map(str.strip, f.readlines())):
