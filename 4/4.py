@@ -22,8 +22,8 @@ def part2(file):
 
         cards = [1] * len(res)
         for i, card in enumerate(cards):
-            for j in range(1, res[i]+1):
-                cards[i+j] += card
+            for j in range(1, res[i] + 1):
+                cards[i + j] += card
 
         return sum(cards)
 
