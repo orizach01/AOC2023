@@ -15,17 +15,17 @@ def part1(file):
 
 def part2(file):
     with open(file) as f:
-        cards = [None]
+        res = []
         for i, line in enumerate(map(str.strip, f.readlines())):
             have, winning = get_results(line)
-            cards.append([len(winning & have)])
+            res.append(len(winning & have))
 
-        for i in range(1, len(cards)):
-            for res in cards[i]:
-                for j in range(1, res + 1):
-                    cards[i + j].append(cards[i + j][0])
+        cards = [1] * len(res)
+        for i, card in enumerate(cards):
+            for j in range(1, res[i]+1):
+                cards[i+j] += card
 
-        return len([item for sublist in cards[1:] for item in sublist])
+        return sum(cards)
 
 
 if __name__ == '__main__':
